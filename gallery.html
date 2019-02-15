@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="utf-8">
+	<title>Downloader Example</title>
+	<script type="text/javascript">
+// 扩展API加载完毕后调用onPlusReady回调函数 
+document.addEventListener("plusready", onPlusReady, false);
+var r = null; 
+// 扩展API加载完毕，现在可以正常调用扩展API 
+function onPlusReady() {
+}
+// 创建下载任务
+function createDownload() {
+	var dtask = plus.downloader.createDownload("http://www.abc.com/a.doc", {}, function(d, status){
+		// 下载完成
+		if(status == 200){ 
+			alert("Download success: " + d.filename);
+		} else {
+			 alert("Download failed: " + status); 
+		}  
+	});
+	//dtask.addEventListener("statechanged", onStateChanged, false);
+	dtask.start(); 
+}
+	</script>
+	</head>
+	<body>
+	<button id="download" onclick="createDownload()">Create download task</button>
+	</body>
+</html>
